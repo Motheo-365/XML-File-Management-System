@@ -21,19 +21,13 @@ app.use(cors({
 /* ========================== CONSTANTS ========================== */
 
 const PORT = 3000;
-const UPLOAD_BASE = path.join(__dirname, "uploads");
+const UPLOAD_BASE = path.resolve(__dirname, "..", "uploads");
 
 const XML_FOLDER = path.join(UPLOAD_BASE, "xml");
 const XSLT_FOLDER = path.join(UPLOAD_BASE, "xslt");
 const XSD_FOLDER = path.join(UPLOAD_BASE, "xsd");
-
 const OUTPUT_FOLDER = path.join(__dirname, "transformations");
-
 const SAXON_JAR = path.join(__dirname, "Saxon-HE-10.9.jar");
-
-/* ================ STATIC FILE SERVING FOR DOCKER ========== */
-  app.use("/uploads", express.static(UPLOAD_BASE));
-  app.use("/transformations", express.static(OUTPUT_FOLDER));
 
 /* ========================== INIT DIRS ========================== */
 
