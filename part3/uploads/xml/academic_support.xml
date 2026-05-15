@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<campusServices xmlns="http://u24666981/campusServices" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://u24666981/campusServices ../xsd/campus_services.xsd" university="University of Pretoria" campus="Hatfield" lastUpdated="2026-04-08">
+  <service id="UP001" category="Academic Support">
+    <name>Student Support and Academic Development</name>
+    <location>IT Building, Level 3</location>
+    <contact>
+      <email>studentsupport@up.ac.za</email>
+      <phone>012-420-4111</phone>
+    </contact>
+    <hours>
+      <day name="Monday">
+        <opens>08:00:00</opens>
+        <closes>16:30:00</closes>
+      </day>
+      <day name="Tuesday">
+        <opens>08:00:00</opens>
+        <closes>16:30:00</closes>
+      </day>
+      <day name="Wednesday">
+        <opens>08:00:00</opens>
+        <closes>16:30:00</closes>
+      </day>
+      <day name="Thursday">
+        <opens>08:00:00</opens>
+        <closes>16:30:00</closes>
+      </day>
+      <day name="Friday">
+        <opens>08:00:00</opens>
+        <closes>15:00:00</closes>
+      </day>
+    </hours>
+    <description>&#xD;
+            Provides academic development programmes, learning support, and referrals to counselling services for registered students.&#xD;
+        </description>
+    <tags>
+      <tag>Academic</tag>
+      <tag>Support</tag>
+      <tag>Development</tag>
+    </tags>
+  </service>
+</campusServices>

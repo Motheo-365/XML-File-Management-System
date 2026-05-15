@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://u24666981/campusServices"
+    xmlns="http://u24666981/campusServices"
+    elementFormDefault="qualified">
+    <!-- Motheo Morena-->
+
+    <!-- Root element -->
+    <xs:element name="campusServices">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="service" type="ServiceType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="university" type="xs:string" use="required"/>
+            <xs:attribute name="campus" type="xs:string" use="required"/>
+            <xs:attribute name="lastUpdated" type="xs:date" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Service type -->
+    <xs:complexType name="ServiceType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="location" type="xs:string"/>
+            <xs:element name="contact" type="ContactType"/>
+            <xs:element name="hours" type="HoursType"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="tags" type="TagsType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="category" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <!-- Contact type -->
+    <xs:complexType name="ContactType">
+        <xs:sequence>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="phone" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Hours type -->
+    <xs:complexType name="HoursType">
+        <xs:sequence>
+            <xs:element name="day" type="DayType" minOccurs="1" maxOccurs="7"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Day type - supports both simple text and structured format -->
+    <xs:complexType name="DayType">
+        <xs:sequence>
+            <xs:element name="opens" type="xs:time"/>
+            <xs:element name="closes" type="xs:time"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="TagsType">
+        <xs:sequence>
+            <xs:element name="tag" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

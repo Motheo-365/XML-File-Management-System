@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students
+  xmlns="http://u24666981/students"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://u24666981/students ../xsd/students.xsd"
+>
+  <student id="S001">
+    <name>Amogelang Dube</name>
+    <program>Computer Science</program>
+    <year>3</year>
+  </student>
+
+  <student id="S002">
+    <name>Kabelo Molefe</name>
+    <program>Information Systems</program>
+    <year>2</year>
+  </student>
+
+  <student id="S003">
+    <name>Motheo Morena</name>
+    <program>Multimedia</program>
+    <year>2</year>
+  </student>
+
+  <student id="S004">
+    <name>Kwanele Tlou</name>
+    <program>Data Science</program>
+    <year>4</year>
+  </student>
+</students>
