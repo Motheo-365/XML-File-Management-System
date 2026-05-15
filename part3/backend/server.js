@@ -314,14 +314,11 @@ app.get("/transform", (req, res) => {
         xmlFile.replace(".xml", "_output.html")
       );
 
-      console.log("============== TRANSFORM ==============");
+      console.log("\n============== TRANSFORM ==============");
       console.log("XML :", xmlFile);
-      console.log("XML Namespace :", xmlNamespace);
-
       console.log("XSLT :", xsltFile);
-      console.log("XSLT Namespace :", xsltNamespace);
-
       console.log("XSD :", xsdFile);
+      console.log("XML Namespace :", xmlNamespace);
 
     // Transform
       const cmd =

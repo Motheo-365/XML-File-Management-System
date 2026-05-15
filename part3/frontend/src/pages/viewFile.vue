@@ -270,6 +270,7 @@
     border: 1px solid rgba(0, 252, 255, 0.2);
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
     padding: 1.3%;
+    margin-bottom: 5vh;
   }
 
   .save-btn {

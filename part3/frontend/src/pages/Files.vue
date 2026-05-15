@@ -292,41 +292,48 @@
 
 <style scoped>
   .files-page {
-    margin: 40px auto;
-    width: 85vw; /* Forced width */
-    color: #fff;
+    margin: 4vh auto;
+    width: 85vw;
+    padding: 2vw;
+
     background: var(--bg);
     color: var(--text);
-    padding: 3%;
-    border-radius: 8px;
+
+    border-radius: 0.8vw;
   }
+
 
   .file-top {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
+    margin: 3vh 0 3vh 0;
   }
 
   h1 {
     font-family: 'Orbitron', sans-serif;
-    letter-spacing: 5px;
+    font-size: 2vw;
+    letter-spacing: 0.3vw;
+
     color: #a78bfa;
-    text-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+    text-shadow: 0 0 1vw rgba(124, 58, 237, 0.4);
   }
 
   /* SLIM CONTROLS */
   .top-row {
     display: flex;
-    gap: 10px;
-    margin-bottom: 30px;
+    gap: 1vw;
+    margin-bottom: 3vh;
   }
+
 
   .panel {
     background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 1.2%;
-    font-weight: bold;
+    border: 0.1vw solid var(--border);
+    padding: 1vw;
+
+    font-size: 0.8vw;
   }
 
   .filter-bar, .action-bar {
@@ -335,11 +342,13 @@
   }
 
   button {
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 0.1vw solid rgba(255,255,255,0.2);
     background: var(--p4);
     color: var(--muted);
-    padding: 4px 12px;
-    font-size: 0.7rem;
+
+    padding: 0.5vh 1vw;
+    font-size: 0.7vw;
+
     cursor: pointer;
     transition: 0.2s;
   }
@@ -365,8 +374,9 @@
   /* THE NEW FILE CARD LAYOUT */
   .files-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1vw;
+
     list-style: none;
     padding: 0;
   }
@@ -375,17 +385,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    gap: 16px;
+
+    gap: 1.5vh;
   }
 
   .avatar {
-    width: 250px;
-    height: 200px;
-    min-width: 60px;
-    flex-shrink: 0;
+    width: 15vw;
+    height: 30vh;
 
-    border-radius: 12px;
+    border-radius: 1vw;
 
     display: flex;
     align-items: center;
@@ -393,14 +401,16 @@
 
     background: linear-gradient(135deg, #7c3aed2f, #c084fc3b);
     color: #3b82f6;
-    box-shadow: 0 0 15px rgba(59,130,246,0.4);
+
+    box-shadow: 0 0 1vw rgba(59,130,246,0.4);
 
     transition: 0.3s;
   }
 
+
   .avatar svg {
-    width: 75px;
-    height: 75px;
+    width: 4vw;
+    height: 4vw;
   }
   /* hover glow */
   .avatar:hover {
@@ -408,46 +418,51 @@
   }
 
   .badge {
-    align-self: flex-start;
-    margin: 0 7%;
-    font-size: 0.75rem;
+    margin: 0 0.7vw;
+    margin-bottom: 2.5vh;
+
+    font-size: 0.7vw;
     font-weight: bold;
-    letter-spacing: px;
-    border: 1px solid currentColor;
-    box-shadow: 0 0 10px rgb(128, 0, 128);
-    padding: 2px 6px;
+
+    padding: 0.2vh 0.5vw;
+
+    border: 0.1vw solid currentColor;
+    box-shadow: 0 0 0.6vw purple;
   }
 
   .info strong {
-      display: block;
-      font-family: 'Orbitron';
-      font-size: 0.9rem;
-      letter-spacing: 2px;
-      margin: 10px 0;
-      color: #ffffff; 
-      text-shadow: none;
-      width: 100%;
-    }
+    font-family: 'Orbitron';
+    font-size: 0.8vw;
 
-    .section-label {
-      font-size: 0.7rem;
-      color: #a78bfa;
-      font-family: 'Orbitron';
-      margin-bottom: 10px;
-      opacity: 0.8; /* Make labels slightly dimmer so content pops */
-    }
+    letter-spacing: 0.2vw;
+    margin: 1vh 0;
+
+    color: #fff;
+  }
+
+  .section-label {
+    font-size: 0.7vw;
+
+    color: #a78bfa;
+    font-family: 'Orbitron';
+
+    margin-bottom: 1vh;
+    opacity: 0.8;
+  }
 
   .file-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    padding-top: 10px;
+
+    border-top: 0.1vw solid rgba(255,255,255,0.05);
+    padding-top: 1vh;
   }
 
   .action-link {
-    color:  #a78bfa;
-    font-size: 0.75rem;
+    color: #a78bfa;
+    font-size: 0.7vw;
+
     text-decoration: none;
     text-transform: uppercase;
   }

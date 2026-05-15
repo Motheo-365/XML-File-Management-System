@@ -45,24 +45,38 @@
 <style scoped>
     .container {
         position: fixed;
+
         top: 50%;
-        right: 50%;
-        margin: 0 auto;
-        background: rgba(0,0,0,0.6);
+        left: 50%;
+        transform: translate(-50%, -50%);
+
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
+
+        gap: 10px;
+
         z-index: 1000;
+
+        pointer-events: none; /* allows clicks through except on toasts */
     }
 
     .toast {
         background: var(--surface);
         border: 1px solid var(--border);
         padding: 12px 16px;
-        margin-bottom: 10px;
+
+        min-width: 250px;
+        max-width: 350px;
+
         color: var(--text);
         backdrop-filter: blur(10px);
+
         animation: slide 0.3s ease;
+
+        text-align: center;
+
+        pointer-events: auto; /* clickable */
     }
 
     .toast.success {
@@ -79,15 +93,17 @@
 
     .ok-btn {
         margin-top: 10px;
-        position: relative;
-        left: 40%;
+
         padding: 6px 12px;
+
         background: transparent;
         border: 1px solid var(--p2);
         color: var(--p1);
+
         cursor: pointer;
         font-size: 0.7rem;
         text-transform: uppercase;
+
         transition: 0.2s;
     }
 
@@ -97,7 +113,7 @@
 
     @keyframes slide {
         from {
-            transform: translateX(50px);
+            transform: translateX(20px);
             opacity: 0;
         }
         to {

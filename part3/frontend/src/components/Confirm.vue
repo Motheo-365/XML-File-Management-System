@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-    import { ref } from "vue"
+    import { ref, nextTick } from "vue"
 
     const visible = ref(false)
     const title = ref("")
@@ -58,22 +58,38 @@
 <style scoped>
     .overlay {
         position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.6);
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+
         display: flex;
         align-items: center;
         justify-content: center;
+
+        background: rgba(0, 0, 0, 0.6);
         z-index: 999;
+
+        /* prevents scroll bleed on mobile */
+        overflow: hidden;
     }
 
     .modal {
         background: var(--surface);
         border: 1px solid var(--border);
-        padding: 5%;
-        width: 20%;
+
+        width: 320px;
+        max-width: 90vw;
+
+        padding: 24px;
+
         text-align: center;
         backdrop-filter: blur(10px);
+
+        /* smooth appearance */
+        transform: translateY(0);
     }
+
 
     h3 {
         color: var(--p1);
@@ -104,5 +120,8 @@
     .no {
         border-color: #ff4d6d;
         color: #ff4d6d;
+    }
+    .no:hover {
+        background-color: #ff4d6e56;
     }
 </style>
