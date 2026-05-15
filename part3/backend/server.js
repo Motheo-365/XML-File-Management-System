@@ -72,18 +72,16 @@ const getXmlNamespace = (xmlPath) => {
 };
 
 // Extract namespaces declared in XSLT (xmlns:*)
-const getXsltNamespaces = (xsltPath) => {
+const getXsltTargetNamespace = (xsltPath) => {
   const content = fs.readFileSync(xsltPath, "utf8");
-  const regex = /xmlns:\w+="([^"]+)"/g;
+  const doc = libxmljs.parseXml(content);
 
-  const namespaces = [];
-  let match;
+  const root = doc.root();
+  if (!root) return [];
 
-  while ((match = regex.exec(content)) !== null) {
-    namespaces.push(match[1]);
-  }
+  const namespaces = root.namespaces();
 
-  return namespaces;
+  return namespaces.map(ns => ns.href()).filter(Boolean);
 };
 
 // Find XSLT matching XML namespace
@@ -92,12 +90,13 @@ const findMatchingXslt = (xmlNamespace) => {
 
   for (const file of xsltFiles) {
     const xsltPath = path.join(XSLT_FOLDER, file);
-    const namespaces = getXsltNamespaces(xsltPath);
+    const namespaces = getXsltTargetNamespace(xsltPath);
 
     if (namespaces.includes(xmlNamespace)) {
       return file;
     }
   }
+
   return null;
 };
 
@@ -225,68 +224,134 @@ app.delete("/files/:type", (req, res) => {
 
 app.get("/transform", (req, res) => {
   try {
-    const xmlFile = req.query.xml || fs.readdirSync(XML_FOLDER)[0];
-    if (!xmlFile) return res.status(400).send("No XML file found");
+    // XML
+      const xmlFile =
+        req.query.xml || fs.readdirSync(XML_FOLDER)[0];
 
-    const xmlPath = path.join(XML_FOLDER, xmlFile);
-    const xmlNamespace = getXmlNamespace(xmlPath);
+      if (!xmlFile) {
+        return res.status(400).send("No XML file found");
+      }
 
-    if (!xmlNamespace) {
-      return res.status(400).send("XML has no namespace");
+      const xmlPath = path.join(XML_FOLDER, xmlFile);
+
+      const xmlNamespace =
+        getXmlNamespace(xmlPath);
+
+      if (!xmlNamespace) {
+        return res.status(400).send(
+          "XML has no namespace"
+        );
     }
 
-    const xsltFile = req.query.xslt
-      ? req.query.xslt
-      : findMatchingXslt(xmlNamespace);
+    // XSLT
+      const xsltFile = req.query.xslt
+        ? req.query.xslt
+        : findMatchingXslt(xmlNamespace);
 
-    if (!xsltFile) {
-      return res.status(400).send(
-        `No XSLT found for namespace: ${xmlNamespace}`
+      if (!xsltFile) {
+        return res.status(400).send(
+          `No matching XSLT found for namespace: ${xmlNamespace}`
+        );
+      }
+
+      const xsltPath =
+        path.join(XSLT_FOLDER, xsltFile);
+
+    // EXTRA VALIDATION
+      const xsltNamespace =
+        getXsltTargetNamespace(xsltPath);
+
+      if (!xsltNamespace.includes(xmlNamespace)) {
+        return res.status(400).json({
+          message:
+            "XSLT namespace does not match XML namespace",
+
+          xmlNamespace,
+          xsltNamespace
+        });
+      }
+
+    // XSD
+      const xsdFile = req.query.xsd
+        ? req.query.xsd
+        : findMatchingXsd(xmlNamespace);
+
+      if (!xsdFile) {
+        return res.status(400).send(
+          `No matching XSD found for namespace: ${xmlNamespace}`
+        );
+      }
+
+      const xsdPath =
+        path.join(XSD_FOLDER, xsdFile);
+
+    // Validate XML
+      const xmlDoc = libxmljs.parseXml(
+        fs.readFileSync(xmlPath, "utf8")
       );
-    }
 
-    const xsdFile = req.query.xsd
-      ? req.query.xsd
-      : findMatchingXsd(xmlNamespace);
-
-    if (!xsdFile) {
-      return res.status(400).send(
-        `No XSD found for namespace: ${xmlNamespace}`
+      const xsdDoc = libxmljs.parseXml(
+        fs.readFileSync(xsdPath, "utf8")
       );
-    }
 
-    const xsltPath = path.join(XSLT_FOLDER, xsltFile);
-    const xsdPath = path.join(XSD_FOLDER, xsdFile);
+      const valid = xmlDoc.validate(xsdDoc);
 
-    const xmlDoc = libxmljs.parseXml(fs.readFileSync(xmlPath, "utf8"));
-    const xsdDoc = libxmljs.parseXml(fs.readFileSync(xsdPath, "utf8"));
+      if (!valid) {
+        return res.status(400).json({
+          message:
+            "XML does not conform to XSD",
 
-    if (!xmlDoc.validate(xsdDoc)) {
-      return res.status(400).json({
-        message: "XML does not conform to XSD",
-        errors: xmlDoc.validationErrors.map(e => e.message)
+          errors:
+            xmlDoc.validationErrors.map(
+              e => e.message
+            )
+        });
+      }
+
+    // Output
+      const outputPath = path.join(
+        OUTPUT_FOLDER,
+        xmlFile.replace(".xml", "_output.html")
+      );
+
+      console.log("============== TRANSFORM ==============");
+      console.log("XML :", xmlFile);
+      console.log("XML Namespace :", xmlNamespace);
+
+      console.log("XSLT :", xsltFile);
+      console.log("XSLT Namespace :", xsltNamespace);
+
+      console.log("XSD :", xsdFile);
+
+    // Transform
+      const cmd =
+        `java -jar "${SAXON_JAR}" ` +
+        `-s:"${xmlPath}" ` +
+        `-xsl:"${xsltPath}" ` +
+        `-o:"${outputPath}"`;
+
+      exec(cmd, err => {
+
+        if (err) {
+
+          console.error(err);
+
+          return res.status(500).json({
+            message: "Transformation failed"
+          });
+        }
+
+        res.sendFile(outputPath);
       });
-    }
 
-    const outputPath = path.join(
-      OUTPUT_FOLDER,
-      xmlFile.replace(".xml", "_output.html")
-    );
+  }
 
-    console.log("Transforming:");
-    console.log("XML:", xmlFile);
-    console.log("XSLT:", xsltFile);
-    console.log("XSD:", xsdFile);
+  catch (err) {
+    console.error(err);
 
-    const cmd = `java -jar "${SAXON_JAR}" -s:"${xmlPath}" -xsl:"${xsltPath}" -o:"${outputPath}"`;
-
-    exec(cmd, err => {
-      if (err) return res.status(500).send("Transformation failed");
-      res.sendFile(outputPath);
+    res.status(500).json({
+      message: err.message
     });
-
-  } catch (err) {
-    res.status(500).send(err.message);
   }
 });
 
