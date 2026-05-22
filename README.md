@@ -1,8 +1,3 @@
-# PROJECT: FINAL MINI HAND-IN
-
-  **Name:** Motheo Morena
-  **Student Number:** u24666981
-
 ### 1. Project Description
  This project implements a full-stack XML processing system for a simulated University of Pretoria information portal.
 
