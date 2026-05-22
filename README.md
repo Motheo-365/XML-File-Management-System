@@ -54,7 +54,7 @@
     - Execute XSLT transformations using Saxon HE
     - Return generated HTML
 
-### 4. Instrcutions to run Frontend:
+### 4. Instructions to run Frontend
 
     ## 4.1 Setup and Run
       cd Frontend
@@ -73,8 +73,13 @@
 ### 5. Transformation Workflow
 
   The transformation process is fully automated using namespace-based matching
+  
+  ## 5.1 Transforming files on Frontend
 
-  ## 5.1 Automatic Workflow
+    - Select OPEN-> on the File Card
+    - Scroll Down to Transform XML Section
+
+  ## 5.2 Automatic Workflow
 
     # 1. Client sends information request:
         GET /transform?xml=file.xml
@@ -96,14 +101,14 @@
       - HTML is generated and returned to the frontend
 
 
-  ## 5.2 Manual Override
+  ## 5.3 Manual Override
     Users may explicitly select an XSLT:
       GET /transform?xml=file.xml&xslt=template.xslt
 
     - This overrides automatic matching
     - Useful for testing and debugging
 
-  ## 5.3 Key Advantages:
+  ## 5.4 Key Advantages:
     - Transformation is not dependent on file names or upload order
     - Ensures correct schema + stylesheet pairing
 
