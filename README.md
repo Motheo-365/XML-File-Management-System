@@ -147,71 +147,7 @@
 
       - HTTP Status: 400
 
-
-## 7. Project Structure
-
-  ├── backend/
-  │   ├── transformations/
-  │   ├── package-lock.json
-  │   ├── package.json
-  │   ├── SAXON-HE-10.9.jar
-  │   └── server.js
-  │
-  ├── evidence/
-  │   ├── generated_output.png
-  │   ├── postman_request.png
-  │   ├── transformation_request.png
-  │   ├── validation_error.png
-  │   ├── xml-and-xslt-mismatch.png
-  │   ├── missing-child-element.png
-  │   └── validation_success.xsd
-  │
-  ├── frontend/
-  │   ├── vscode/
-  │   ├── public/
-  │   ├──src/
-  │   │  ├── components/
-  │   │  │    ├── Basecard.vue
-  │   │  │    ├── Confirm.vue
-  │   │  │    ├── Message.vue
-  │   │  │    ├── NavBar.vue
-  │   │  │    └── UploadCard.vue
-  │   │  │
-  │   │  ├── pages/
-  │   │  │    ├── Files.vue
-  │   │  │    ├── HtmlPreview.vue
-  │   │  │    ├── NotFound.vue
-  │   │  │    ├── Upload.vue
-  │   │  │    └── viewFile.vue
-  │   │  │
-  │   │  ├── plugins/
-  │   │  │    └── ui.js
-  │   │  │
-  │   │  ├── router/
-  │   │  │    └── index.js
-  │   │  │
-  │   │  ├── App.vue
-  │   │  └──  main.js
-  │   │
-  │   ├── gitignore
-  │   ├── index.html
-  │   ├── jsconfig.json
-  │   ├── package-lock.json
-  │   ├── package.json
-  │   └── vite.config.js
-  │
-  ├── uploads/
-  │   ├── xml/
-  │   ├── xsd/
-  │   └── xslt/
-  │
-  ├── package-lock.json
-  ├── package.json
-  └── README.md
-
-All files follow the required naming convention including surname and student number.
-
-## 8. Key Outcomes
+## 7. Key Outcomes
   This project demonstrates:
     - Real-world XML processing pipeline
     - Schema-driven validation
@@ -220,5 +156,5 @@ All files follow the required naming convention including surname and student nu
     - Full-stack integration (Node.js + Vue 3)
     - Clean separation of system layer
 
-## 13. Conclusion
+## 8. Conclusion
 This system shows how XML technologies can be effectively integrated into modern architectures. By combining schema validation, namespace matching, and server-side XSLT transformations, the project simulates a realistic enterprise document processing system suitable for structured institutional data.
