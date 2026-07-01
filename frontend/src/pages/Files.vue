@@ -78,7 +78,7 @@
                   :to="{ name: 'viewFile', params: { type: file.type, name: file.name } }"
                   class="action-link"
                 >
-                  Open →
+                  View →
                 </RouterLink>
 
                 <button class="icon-btn" @click="deleteFile(file)">
