@@ -3,6 +3,12 @@
   <div class="files-page">
 
     <h1>File Manager</h1>
+    <p>Start server locally.</p>
+    <!-- 
+      Go to folder and run,
+        >> cd backed
+        >> node server
+    -->
 
     <!-- TOP ROW: FILTER + DELETE -->
     <div class="top-row">
