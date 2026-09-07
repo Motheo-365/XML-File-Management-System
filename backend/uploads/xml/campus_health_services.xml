@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<campusServices xmlns="http://u24666981/campusServices" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://u24666981/campusServices ../xsd/campus_services.xsd" university="University of Pretoria" campus="Hatfield" lastUpdated="2026-04-08">
+  <service id="UP003" category="Health">
+    <name>Campus Health Services</name>
+    <location>Student Centre, Building 2</location>
+    <contact>
+      <email>health@up.ac.za</email>
+      <phone>012-420-3456</phone>
+    </contact>
+    <hours>
+      <day name="Monday">
+        <opens>08:00:00</opens>
+        <closes>16:00:00</closes>
+      </day>
+      <day name="Tuesday">
+        <opens>08:00:00</opens>
+        <closes>16:00:00</closes>
+      </day>
+      <day name="Wednesday">
+        <opens>08:00:00</opens>
+        <closes>16:00:00</closes>
+      </day>
+      <day name="Thursday">
+        <opens>08:00:00</opens>
+        <closes>16:00:00</closes>
+      </day>
+      <day name="Friday">
+        <opens>08:00:00</opens>
+        <closes>15:00:00</closes>
+      </day>
+    </hours>
+    <description>&#xD;
+            Offers primary healthcare services, health education, and wellness support to University of Pretoria students.&#xD;
+        </description>
+    <tags>
+      <tag>Health</tag>
+      <tag>Wellness</tag>
+      <tag>Healthcare</tag>
+    </tags>
+  </service>
+</campusServices>
