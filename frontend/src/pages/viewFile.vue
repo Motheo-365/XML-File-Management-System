@@ -63,6 +63,7 @@
   import { useRoute, useRouter } from "vue-router"
   import * as monaco from "monaco-editor"
   import { $toast } from "@/plugins/ui"
+  import { API_URL } from "@/api";
 
   const route = useRoute()
   const router = useRouter()
@@ -121,7 +122,7 @@
     error.value = null
 
     try {
-      const url = `http://localhost:3000/files/${type.value}/${encodeURIComponent(filename.value)}`
+      const url = `${API_URL}/files/${type.value}/${encodeURIComponent(filename.value)}`
       const res = await fetch(url)
 
       if (!res.ok) throw new Error("Failed to load file")
@@ -157,7 +158,7 @@
       formData.append("file", blob, filename.value)
 
       const res = await fetch(
-        `http://localhost:3000/files/${type.value}/${encodeURIComponent(filename.value)}`,
+        `${API_URL}/files/${type.value}/${encodeURIComponent(filename.value)}`,
         {
           method: "PUT",
           body: formData
@@ -175,7 +176,7 @@
 
   const fetchXslt = async () => {
     try {
-      const res = await fetch("http://localhost:3000/files/xslt")
+      const res = await fetch(`${API_URL}/files/xslt`)
       const data = await res.json()
 
       xsltFiles.value = data
@@ -188,7 +189,7 @@
 
   const transformFile = async () => {
     try {
-      const url = new URL("http://localhost:3000/transform")
+      const url = new URL(`${API_URL}/transform`)
 
       url.search = new URLSearchParams({
         xml: filename.value,
