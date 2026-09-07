@@ -12,9 +12,12 @@ const app = express();
 
 /* ========================== CORS ========================== */
 
-const cors = require("cors");
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type"]
+}));
 
-app.use(cors());
 /* ========================== CONSTANTS ========================== */
 
 const PORT = process.env.PORT || 3000;
