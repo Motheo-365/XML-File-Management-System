@@ -21,7 +21,7 @@ app.use(cors({
 /* ========================== CONSTANTS ========================== */
 
 const PORT = process.env.PORT || 3000;
-const UPLOAD_BASE = path.resolve(__dirname, "..", "uploads");
+const UPLOAD_BASE = path.resolve(__dirname, "uploads");
 
 const XML_FOLDER = path.join(UPLOAD_BASE, "xml");
 const XSLT_FOLDER = path.join(UPLOAD_BASE, "xslt");
