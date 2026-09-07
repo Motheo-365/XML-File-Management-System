@@ -12,15 +12,12 @@ const app = express();
 
 /* ========================== CORS ========================== */
 
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type"]
-}));
+const cors = require("cors");
 
+app.use(cors());
 /* ========================== CONSTANTS ========================== */
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const UPLOAD_BASE = path.resolve(__dirname, "..", "uploads");
 
 const XML_FOLDER = path.join(UPLOAD_BASE, "xml");
