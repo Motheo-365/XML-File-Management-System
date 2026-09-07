@@ -163,7 +163,7 @@ const files = ref([])
 
     } catch (err) {
       error.value = err.message
-      ui.message(err.message, "error")
+      $toast(err.message, "error")
 
     } finally {
       loading.value = false
@@ -225,12 +225,12 @@ const files = ref([])
         method: "DELETE"
       })
 
-      ui.message("XML files deleted", "success")
+      $toast("XML files deleted", "success")
 
       await fetchFiles()
 
     } catch (err) {
-      ui.message("Delete failed: " + err.message, "error")
+      $toast("Delete failed: " + err.message, "error")
     }
   }
 
@@ -247,12 +247,12 @@ const files = ref([])
         method: "DELETE"
       })
 
-      ui.message("XSLT files deleted", "success")
+      $toast("XSLT files deleted", "success")
 
       await fetchFiles()
 
     } catch (err) {
-      ui.message("Delete failed: " + err.message, "error")
+      $toast("Delete failed: " + err.message, "error")
     }
   }
 
@@ -269,13 +269,13 @@ const files = ref([])
         method: "DELETE"
       })
 
-      ui.message("XSD files deleted", "success")
+      $toast("XSD files deleted", "success")
 
       await fetchFiles()
 
     } 
     catch (err) {
-      ui.message("Delete failed: " + err.message, "error")
+      $toast("Delete failed: " + err.message, "error")
     }    
   }
 
