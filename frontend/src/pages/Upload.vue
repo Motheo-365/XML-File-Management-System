@@ -2,6 +2,7 @@
 
 <script setup>
     import UploadCard from '@/components/UploadCard.vue'
+  import { API_URL } from "@/api";
 </script>
 
 <template>
@@ -12,21 +13,21 @@
       <UploadCard
         title="Upload XML"
         accept=".xml"
-        upload-url="http://localhost:3000/upload/xml"
+         :upload-url="`${API_URL}/upload/xml`"
         button-text="Upload XML"
       />
 
       <UploadCard
         title="Upload XSD"
         accept=".xsd"
-        upload-url="http://localhost:3000/upload/xsd"
+       :upload-url="`${API_URL}/upload/xsd`"
         button-text="Upload XSD"
       />
 
       <UploadCard
         title="Upload XSLT"
         accept=".xsl,.xslt"
-        upload-url="http://localhost:3000/upload/xslt"
+        :upload-url="`${API_URL}/upload/xslt`"
         button-text="Upload XSLT"
       />
 

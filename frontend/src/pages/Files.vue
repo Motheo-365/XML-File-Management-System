@@ -106,8 +106,9 @@
   import { Trash2, FileCode2, FileJson, FileText } from "lucide-vue-next"
   import BaseCard from "@/components/BaseCard.vue"
   import { $toast, $confirm } from "@/plugins/ui"
+  import { API_URL } from "@/api";
 
-  const files = ref([])
+const files = ref([])
   const loading = ref(false)
   const error = ref(null)
   const selectedFilter = ref("all")
@@ -134,7 +135,7 @@
     error.value = null
 
     try {
-      const response = await fetch("http://localhost:3000/files")
+      const response = await fetch(`${API_URL}/files`)
 
       if (!response.ok) {
         throw new Error("Failed to fetch files")
@@ -178,7 +179,7 @@
 
     try {
       const endpoint =
-        `http://localhost:3000/files/${file.type}/${encodeURIComponent(file.name)}`
+        `${API_URL}/files/${file.type}/${encodeURIComponent(file.name)}`
 
       const res = await fetch(endpoint, { method: "DELETE" })
       if (!res.ok) throw new Error("Delete failed")
@@ -199,9 +200,9 @@
     if (!ok) return
 
     try {
-      await fetch("http://localhost:3000/files/xml",  { method: "DELETE" })
-      await fetch("http://localhost:3000/files/xslt", { method: "DELETE" })
-      await fetch("http://localhost:3000/files/xsd",  { method: "DELETE" })
+      await fetch(`${API_URL}/files/xml`,  { method: "DELETE" })
+      await fetch(`${API_URL}/files/xslt`, { method: "DELETE" })
+      await fetch(`${API_URL}/files/xsd`,  { method: "DELETE" })
 
       $toast("All files deleted", "success")
       await fetchFiles()
@@ -220,7 +221,7 @@
     if (!ok) return
 
     try {
-      await fetch("http://localhost:3000/files/xml", {
+      await fetch(`${API_URL}/files/xml`, {
         method: "DELETE"
       })
 
@@ -242,7 +243,7 @@
     if (!ok) return
 
     try {
-      await fetch("http://localhost:3000/files/xslt", {
+      await fetch(`${API_URL}/files/xslt`, {
         method: "DELETE"
       })
 
@@ -264,7 +265,7 @@
     if (!ok) return
 
     try {
-      await fetch("http://localhost:3000/files/xsd", {
+      await fetch(`${API_URL}/files/xsd`, {
         method: "DELETE"
       })
 
